@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Fahrel Hafiz Amaral Haq</title>
+    <style>
+        /* --- 1. CSS VARIABLES & GLOBAL RESET --- */
+        :root {
+            --bg-color: #121212;
+            /* Latar belakang gelap */
+            --text-white: #ffffff;
+            --text-gray: #b3b3b3;
+            /* Warna Aksen Neon */
+            --accent-pink: #ff00ff;
+            --accent-blue: #00ffff;
+            --accent-green: #39ff14;
+            --accent-yellow: #ffff00;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            /* Agar scroll halus saat klik link */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Mencegah scroll horizontal */
+        }
+
+        /* --- 2. UTILITY CLASSES --- */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            /* Tengah secara horizontal */
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        /* Gaya Judul per Seksi dengan dekorasi kotak miring */
+        h2.section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        h2.section-title::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--accent-color, var(--accent-blue));
+            /* Warna default biru */
+            transform: rotate(-3deg);
+            z-index: -1;
+        }
+
+        p.section-desc {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* Tombol Neon */
+        .btn-neon {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 2px solid var(--accent-color, var(--accent-blue));
+            color: var(--accent-color, var(--accent-blue));
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn-neon:hover {
+            background-color: var(--accent-color, var(--accent-blue));
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-color, var(--accent-blue));
+        }
+
+        /* --- 3. HERO SECTION --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        /* Dekorasi teks "HELLO" */
+        .hello-badge {
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 5px 15px;
+            border: 3px solid var(--accent-pink);
+            transform: rotate(-5deg);
+            margin-bottom: 20px;
+            color: var(--accent-pink);
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text h1 span {
+            color: var(--accent-blue);
+        }
+
+        .hero-desc {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            max-width: 500px;
+        }
+
+        /* Bingkai Foto Berbentuk Arch (Kubah) */
+        .hero-image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img-frame {
+            width: 300px;
+            /* Lebar diperkecil */
+            height: 400px;
+            /* Tinggi disesuaikan */
+            border-radius: 150px 150px 0 0;
+            /* Setengah dari 300px */
+            overflow: hidden;
+            border: 3px solid var(--accent-pink);
+            position: relative;
+            z-index: 2;
+            margin-top: 0px;
+            /* Atur jarak atas jika perlu */
+        }
+
+        .hero-img-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            /* Fokus ke bagian atas tengah foto */
+        }
+
+        /* Dekorasi Geometris di belakang foto */
+        .geo-decoration {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            border: 5px solid var(--accent-yellow);
+            border-radius: 50%;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+
+        /* --- 4. EDUCATION SECTION --- */
+        .education-timeline {
+            margin-top: 40px;
+            border-left: 3px solid var(--accent-green);
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        /* Ikon Bintang sebagai bullet point */
+        .timeline-item::before {
+            content: '★';
+            position: absolute;
+            left: -39px;
+            /* Menyesuaikan posisi ikon */
+            top: 0;
+            color: var(--accent-green);
+            font-size: 1.5rem;
+            background-color: var(--bg-color);
+            padding: 5px 0;
+        }
+
+        .timeline-year {
+            display: block;
+            color: var(--accent-green);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+
+        /* --- 5. PROJECTS SECTION --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            /* 2 Kolom responsif */
+            gap: 40px;
+        }
+
+        .project-card {
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color, var(--accent-blue));
+        }
+
+        /* Wadah Gambar/Video Proyek berbentuk Arch */
+        .project-visual {
+            height: 250px;
+            border-radius: 125px 125px 0 0;
+            /* Bentuk kubah */
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 2px solid var(--text-gray);
+            position: relative;
+            background-color: #000;
+        }
+
+        /* Placeholder untuk Laporan jika belum ada gambar */
+        .doc-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            color: var(--text-gray);
+            font-size: 3rem;
+        }
+
+        /* Embed YouTube agar responsif di dalam bentuk arch */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* --- 6. REFLEKSI KRITIS SECTION (NEW) --- */
+        .reflection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .reflection-card {
+            background: #1a1a1a;
+            padding: 30px 25px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        /* Efek hover pada kartu refleksi */
+        .reflection-card:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.1);
+        }
+
+        /* Ikon kutipan besar sebagai dekorasi */
+        .reflection-card::after {
+            content: '“';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 5rem;
+            color: var(--accent-yellow);
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .reflection-card h3 {
+            color: var(--accent-yellow);
+            margin-bottom: 15px;
+        }
+
+
+        /* --- 7. CONTACT FOOTER --- */
+        .contact-footer {
+            text-align: center;
+            padding: 100px 0 50px;
+            background: linear-gradient(to top, #000, var(--bg-color));
+            position: relative;
+        }
+
+        /* Dekorasi garis bergelombang (SVG) */
+        .squiggly-line {
+            display: block;
+            width: 200px;
+            height: 20px;
+            margin: 0 auto 30px;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='10' viewBox='0 0 40 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5 Q 10 0 20 5 T 40 5' stroke='%23ff00ff' stroke-width='4' fill='none'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            margin-top: 50px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+
+        /* --- 8. RESPONSIVE DESIGN (Mobile) --- */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                /* Stack vertikal di HP */
+                text-align: center;
+                gap: 30px;
+            }
+
+            .hero-image-container {
+                order: -1;
+                /* Gambar di atas teks pada mobile */
+                margin-bottom: 30px;
+            }
+
+            .hero-img-frame {
+                width: 280px;
+                height: 350px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                /* 1 kolom proyek di HP */
+            }
+
+            .contact-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* --- 9. ANIMATION UTILITY (Scroll Reveal) --- */
+        /* Kelas ini akan ditambahkan via JS saat elemen masuk viewport */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero section-padding">
+        <div class="container hero-content">
+            <div class="hero-text reveal">
+                <span class="hello-badge">HELLO WORLD</span>
+                <h1>Saya <span>Fahrel Hafiz</span> Amaral Haq.</h1>
+                <p class="hero-desc">Mahasiswa Informatika di Pradita University. Tertarik pada pengembangan teknologi
+                    yang beretika dan eksplorasi budaya digital.</p>
+                <a href="#projects" class="btn-neon" style="--accent-color: var(--accent-pink);">Lihat Portfolio ↓</a>
+            </div>
+
+            <div class="hero-image-container reveal">
+                <div class="hero-img-frame">
+                    <img src="profile.png" alt="Foto Fahrel Hafiz">
+                    <div class="geo-decoration"></div>
+                </div>
+            </div>
+    </section>
+
+
+    <section class="section-padding" id="education">
+        <div class="container reveal">
+            <h2 class="section-title" style="--accent-color: var(--accent-green);">Education History</h2>
+            <p class="section-desc">Latar belakang akademis yang membentuk pola pikir saya saat ini.</p>
+
+            <div class="education-timeline">
+                <div class="timeline-item">
+                    <span class="timeline-year">Sekarang</span>
+                    <h3>Pradita University</h3>
+                    <p style="color: var(--text-gray);">Program Studi Informatika (S1). Fokus pada pengembangan
+                        perangkat lunak dan etika profesi IT.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">Lulusan</span>
+                    <h3>SMA 7 Kota Tangerang</h3>
+                    <p style="color: var(--text-gray);">Menyelesaikan pendidikan menengah atas dengan fokus pada jurusan
+                        IPA.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-padding" id="projects">
+        <div class="container reveal">
+            <h2 class="section-title" style="--accent-color: var(--accent-blue);">Selected Projects</h2>
+            <p class="section-desc">Karya dan tugas yang menonjolkan pemahaman teknis serta kepekaan terhadap isu etika
+                dan budaya.</p>
+
+            <div class="projects-grid">
+
+                <div class="project-card" style="--accent-color: var(--accent-blue);">
+                    <div class="project-visual">
+                        <div class="doc-placeholder">
+                            📄 <img src="project.png" alt="docs">
+                        </div>
+                    </div>
+                    <h3>Laporan Penelitian: Analisis Etika</h3>
+                    <p style="color: var(--text-gray); margin-bottom: 20px;">Sebuah studi mendalam mengenai implementasi
+                        teori etika dalam studi kasus kontemporer. Dokumen ini merangkum metodologi, analisis data, dan
+                        kesimpulan berbasis moral.</p>
+                    <a href="#" target="_blank" class="btn-neon">Baca Laporan Lengkap</a>
+                </div>
+
+                <div class="project-card" style="--accent-color: var(--accent-pink);">
+
+                    <div class="project-visual" style="border-color: var(--accent-pink);">
+
+                        <img src="https://img.youtube.com/vi/hgX4CUrySkg/hqdefault.jpg" alt="Thumbnail Podcast"
+                            style="width:100%; height:100%; object-fit:cover; object-position: center;">
+
+                        <div
+                            style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:3rem; color:white; text-shadow: 0 0 10px black;">
+                            ▶
+                        </div>
+                    </div>
+
+                    <h3>Podcast: Diskusi Etika & Budaya</h3>
+                    <p style="color: var(--text-gray); margin-bottom: 20px;">Diskusi kelompok interaktif membahas isu
+                        kebangsaan dan penerapan nilai-nilai budaya dalam konteks modern.</p>
+
+                    <a href="https://www.youtube.com/watch?v=hgX4CUrySkg" target="_blank" class="btn-neon"
+                        style="--accent-color: var(--accent-pink);">Tonton di YouTube</a>
+                </div>
+            </div>
+            <h3>Podcast: Diskusi Etika & Budaya</h3>
+            <p style="color: var(--text-gray); margin-bottom: 20px;">Diskusi kelompok interaktif membahas isu
+                kebangsaan dan penerapan nilai-nilai budaya dalam konteks modern. Sebuah refleksi audio-visual
+                tentang dinamika sosial.</p>
+            <a href="https://www.youtube.com/watch?v=hgX4CUrySkg" target="_blank" class="btn-neon"
+                style="--accent-color: var(--accent-pink);">Tonton di YouTube</a>
+        </div>
+
+        </div>
+        </div>
+    </section>
+
+
+    <section class="section-padding" id="reflection">
+        <div class="container reveal">
+            <h2 class="section-title" style="--accent-color: var(--accent-yellow);">Refleksi Kritis Individu</h2>
+            <p class="section-desc">Intisari pengalaman belajar yang membentuk perspektif saya tentang kolaborasi dan
+                tanggung jawab.</p>
+
+            <div class="reflection-grid">
+                <div class="reflection-card">
+                    <h3>Dinamika Ego vs Altruisme</h3>
+                    <p style="color: var(--text-gray);">Saya belajar bahwa kolaborasi efektif menuntut penurunan ego
+                        pribadi (egoisme) demi kepentingan tim (altruisme). Menyeimbangkan ide sendiri dengan masukan
+                        orang lain adalah kunci sinergi kelompok.</p>
+                </div>
+                <div class="reflection-card">
+                    <h3>Tanggung Jawab Profesional</h3>
+                    <p style="color: var(--text-gray);">Menyelesaikan bagian tugas tepat waktu bukan sekadar kewajiban
+                        administratif, melainkan bentuk tanggung jawab moral terhadap rekan satu tim yang bergantung
+                        pada hasil kerja saya.</p>
+                </div>
+                <div class="reflection-card">
+                    <h3>Etika Komunikasi Digital</h3>
+                    <p style="color: var(--text-gray);">Dalam memproduksi konten publik seperti podcast, saya menyadari
+                        pentingnya memilih diksi yang santun dan berbasis fakta untuk menghindari misinformasi dan
+                        menjaga keadaban di ruang digital.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="contact-footer reveal">
+        <div class="container">
+            <span class="squiggly-line"></span>
+            <h2 class="contact-title">LET'S CREATE<br><span style="color: var(--accent-pink);">SOMETHING COOL.</span>
+            </h2>
+
+            <div class="contact-info" style="margin-top: 40px;">
+                <p style="font-weight: bold; color: var(--text-white);">Fahrel Hafiz Amaral Haq</p>
+                <p>Mahasiswa Informatika | Pradita University</p>
+            </div>
+
+            <p class="copyright">© 2025 Portofolio Fahrel Hafiz. Dibuat dengan kode dan kopi.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Fungsi untuk mengecek posisi elemen saat discroll
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150; // Jarak dari bawah viewport sebelum elemen muncul
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                } else {
+                    // Opsional: Hapus 'else' ini jika ingin elemen tetap terlihat setelah muncul sekali
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+
+        // Jalankan fungsi saat halaman discroll
+        window.addEventListener('scroll', revealOnScroll);
+
+        // Jalankan sekali saat halaman dimuat agar elemen di atas langsung terlihat
+        window.addEventListener('load', revealOnScroll);
+    </script>
+
+</body>
+
+</html>
